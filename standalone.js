@@ -9,8 +9,10 @@
 var jwt_decode = require('./lib/index');
 
 //use amd or just throught to window object.
-if (typeof global.window.define == 'function' && global.window.define.amd) {
+if (global.window && typeof global.window.define == 'function' && global.window.define.amd) {
   global.window.define('jwt_decode', function () { return jwt_decode; });
 } else if (global.window) {
   global.window.jwt_decode = jwt_decode;
+} else {
+  this.jwt_decode = jwt_decode;
 }
